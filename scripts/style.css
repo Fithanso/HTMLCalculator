@@ -1,0 +1,33 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+.buttons {
+width: 90px;
+height: 50px;
+margin: 5% 3%;
+color: white;
+background-color: #572727;
+border: none;
+}
+
+#outer {
+	width: 60%;
+	height: 500px;
+	background-color: #3C3939;
+	margin: 0 auto;
+}
+
+#inner {
+	margin: 0 auto;
+	width: 90%;
+}
+
+#summ {
+	margin: 8% auto;
+	width: 300px;
+	height: 15px;
+	background-color: #4E4949;
+	font-weight: bold;
+	
+}
