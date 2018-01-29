@@ -44,6 +44,7 @@ require([], function () {
    function clear_one () {
        var arr = [display.innerHTML];
        arr.pop();/*не работает как надо*/
+       display.innerHTML = arr;
    }
 });
 
