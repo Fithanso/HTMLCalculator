@@ -2,14 +2,6 @@ body {
 	margin: 0;
 	padding: 0;
 }
-.buttons {
-width: 90px;
-height: 50px;
-margin: 5% 3%;
-color: white;
-background-color: #572727;
-border: none;
-}
 
 #outer {
 	width: 60%;
@@ -18,16 +10,18 @@ border: none;
 	margin: 0 auto;
 }
 
-#inner {
-	margin: 0 auto;
-	width: 90%;
+table {
+	width: 100%;
+	height: 100%;
 }
 
-#summ {
-	margin: 8% auto;
-	width: 300px;
-	height: 15px;
-	background-color: #4E4949;
-	font-weight: bold;
-	
+table button {
+	width: 100%;
+	height: 100%;
+}
+
+#display {
+	width: 100%;
+	height: 100%;
+	background-color: white;
 }
