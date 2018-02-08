@@ -19,17 +19,18 @@ require([], function () {
 
 
     function equals () {
-        var value = eval(display.innerHTML);
-        display.innerHTML = value;
         result = true;
+        try {
+            var value = eval(display.innerHTML);
+        } catch(e) {
+            display.innerHTML = "ERROR!";
+            return;
+        }
+        display.innerHTML = value;
     }
 
     function numclick () {
 
-        if (result == true) {
-            result = false;
-            display.innerHTML = ""
-        }
         display.innerHTML+=this.innerHTML;
         clickres = true;
     }
@@ -47,6 +48,7 @@ require([], function () {
 
    }
 });
+
 
 
 
