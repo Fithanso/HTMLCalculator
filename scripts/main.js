@@ -3,27 +3,45 @@ require([], function () {
     var buttons = document.getElementsByTagName("button");
     for(var i=0; i<buttons.length; i++) {
         var button = buttons[i];
-        if (button.innerHTML == "=") {
-            button.addEventListener("click", equals, false);
-        }else if(button.innerHTML == "Clear") {
-            button.addEventListener("click", clear, false);
-        }else if(button.innerHTML == "R") {
-            button.addEventListener("click", clear_one, false);
-        }else{
-            button.addEventListener("click", numclick, false);
+
+        switch (button.innerHTML) {
+            case ("="):
+                button.addEventListener("click", equals, false);
+                break;
+            case ("R"):
+                button.addEventListener("click", clear_one, false);
+                break;
+            case ("Clear"):
+                button.addEventListener("click", clear, false);
+                break;
+            case ("√"):
+                button.addEventListener("click", sqrt, false);
+                break;
+            default:
+                button.addEventListener("click", numclick, false);
+
         }
+
     }
     var display = document.getElementById("display");
     var result = false;
     var clickres = false;
+    var error_clear;
+    var square = false;
 
 
     function equals () {
         result = true;
+
         try {
+            if(square = true) {
+                var arr_2 = display.innerHTML.slice(1);//в массив заносится всё, не включая знак кв корня
+                alert(arr_2);
+            }
             var value = eval(display.innerHTML);
         } catch(e) {
             display.innerHTML = "ERROR!";
+            error_clear = true;
             return;
         }
         display.innerHTML = value;
@@ -38,15 +56,21 @@ require([], function () {
    function clear () {
        if(clickres == true) {
            clickres = false;
-           display.innerHTML = " "
+           display.innerHTML = " ";
        }
    }
 
    function clear_one () {
-       var arr = display.innerHTML.slice(0, -1)
-       display.innerHTML = arr
-
+            var arr = display.innerHTML.slice(0, -1)
+            display.innerHTML = arr;
    }
+
+   function sqrt () {
+       display.innerHTML+=this.innerHTML;
+       clickres = true;
+       square = true;
+   }
+
 });
 
 
