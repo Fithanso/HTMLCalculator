@@ -1,5 +1,6 @@
 require([], function () {
 
+
     var buttons = document.getElementsByTagName("button");
     for(var i=0; i<buttons.length; i++) {
         var button = buttons[i];
@@ -21,57 +22,69 @@ require([], function () {
                 button.addEventListener("click", numclick, false);
 
         }
-
     }
+
     var display = document.getElementById("display");
     var result = false;
     var clickres = false;
-    var error_clear;
     var square = false;
 
 
     function equals () {
         result = true;
+        if (square = true) {
+            var value = display.innerHTML;
+            var str = /((\d*)√(\d*))/g;
+            var match = value.match(str);
+            alert(match[2]);
+        }
 
         try {
-            if(square = true) {
-                var arr_2 = display.innerHTML.slice(1);//в массив заносится всё, не включая знак кв корня
-                alert(arr_2);
-            }
             var value = eval(display.innerHTML);
         } catch(e) {
             display.innerHTML = "ERROR!";
-            error_clear = true;
             return;
         }
         display.innerHTML = value;
     }
 
+
     function numclick () {
 
+        if (result == true) {
+            result = false;
+            display.innerHTML = ""
+        }
         display.innerHTML+=this.innerHTML;
         clickres = true;
     }
 
-   function clear () {
-       if(clickres == true) {
-           clickres = false;
-           display.innerHTML = " ";
-       }
-   }
+    function clear () {
+        if(clickres == true) {
+            clickres = false;
+            display.innerHTML = " "
+        }
+    }
 
-   function clear_one () {
-            var arr = display.innerHTML.slice(0, -1)
-            display.innerHTML = arr;
-   }
+    function clear_one () {
+        var arr = display.innerHTML.slice(0, -1)
+        display.innerHTML = arr
 
-   function sqrt () {
-       display.innerHTML+=this.innerHTML;
-       clickres = true;
-       square = true;
-   }
+    }
 
+    function sqrt () {
+        if (result == true) {
+            result = false;
+            display.innerHTML = ""
+        }
+        display.innerHTML+=this.innerHTML;
+        clickres = true;
+        square = true;
+
+    }
 });
+
+
 
 
 
