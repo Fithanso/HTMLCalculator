@@ -37,15 +37,16 @@ require([], function () {
             var str = /((\d*)√(\d*))/g;
             var match = value.match(str);
             alert(match[1]);
-        }
+        } else {
 
-        try {
-            var value = eval(display.innerHTML);
-        } catch(e) {
-            display.innerHTML = "ERROR!";
-            return;
+            try {
+                var value = eval(display.innerHTML);
+            } catch (e) {
+                display.innerHTML = "ERROR!";
+                return;
+            }
+            display.innerHTML = value;
         }
-        display.innerHTML = value;
     }
 
 
