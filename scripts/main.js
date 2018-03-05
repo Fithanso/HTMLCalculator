@@ -36,7 +36,7 @@ require([], function () {
             var value = display.innerHTML;
             var str = /((\d*)√(\d*))/g;
             var match = value.match(str);
-            alert(match[2]);
+            alert(match[1]);
         }
 
         try {
