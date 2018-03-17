@@ -15,8 +15,8 @@ require([], function () {
             case ("Clear"):
                 button.addEventListener("click", clear, false);
                 break;
-            case ("√"):
-                button.addEventListener("click", sqrt, false);
+            case("^"):
+                button.addEventListener("click", karet, false);
                 break;
             default:
                 button.addEventListener("click", numclick, false);
@@ -27,26 +27,55 @@ require([], function () {
     var display = document.getElementById("display");
     var result = false;
     var clickres = false;
-    var square = false;
+
 
 
     function equals () {
+        var karet_sign = 5;
         result = true;
-        if (square = true) {
-            var value = display.innerHTML;
-            var str = /((\d*)√(\d*))/g;
-            var match = value.match(str);
-            alert(match[1]);
-        } else {
+        var value = display.innerHTML;
+        var str = /(√(\d*))/g;
+        var match = value.match(str);
+        var index = value.search(str);//индекс первого элемента, с которого началось совпадение(√)
+        var str_2 = /((\d*)\^(\d*))/g;
+        var match_2 = value.match(str_2);
+        var index_2 = value.search(str);
+
+        if(karet_sign = 6) {
+            alert("ff");
+        }
+
+
+
+        while (index != -1) {
+            var argument = parseFloat(match[0].slice(1));//match[0]-знак и всё после знака,slice(1)-убираем знак
+            var result = Math.sqrt(argument);
+            var first_part = value.slice(0, index);//обрезка строки с начала до index-начала совпадения str
+            var second_part =  value.slice(index + match[0].length);//value.slice(...)=slice(6)-чтобы иметь возможность считать последующие корни
+            value = first_part;
+            var prev_symb = value[index-1];
+            if (prev_symb !== undefined) {//говорим, что 11√22=11*√22, проверяя есть ли что-то до корня(в нашем случае 11)
+                var charcode = prev_symb.charCodeAt(0);//.charCodeAt-код символа в кодировке
+                if (charcode > 47 && charcode < 58) {// если charcode = 1-9
+                    value += '*';//добавление в конец first part * - 11*(√22)
+                }
+
+            }
+            value += result;
+            value += second_part;
+            match = value.match(str);
+            index = value.search(str);
+        }
 
             try {
-                var value = eval(display.innerHTML);
+                value = eval(value);
             } catch (e) {
                 display.innerHTML = "ERROR!";
                 return;
             }
             display.innerHTML = value;
-        }
+
+
     }
 
 
@@ -73,16 +102,17 @@ require([], function () {
 
     }
 
-    function sqrt () {
+    function karet () {
         if (result == true) {
             result = false;
             display.innerHTML = ""
         }
         display.innerHTML+=this.innerHTML;
         clickres = true;
-        square = true;
 
     }
+
+
 });
 
 
