@@ -15,9 +15,6 @@ require([], function () {
             case ("Clear"):
                 button.addEventListener("click", clear, false);
                 break;
-            case("^"):
-                button.addEventListener("click", karet, false);
-                break;
             default:
                 button.addEventListener("click", numclick, false);
 
@@ -31,20 +28,15 @@ require([], function () {
 
 
     function equals () {
-        var karet_sign = 5;
+
         result = true;
         var value = display.innerHTML;
         var str = /(√(\d*))/g;
         var match = value.match(str);
         var index = value.search(str);//индекс первого элемента, с которого началось совпадение(√)
-        var str_2 = /((\d*)\^(\d*))/g;
+        var str_2 = /(\^(\d*))/g;
         var match_2 = value.match(str_2);
-        var index_2 = value.search(str);
-
-        if(karet_sign = 6) {
-            alert("ff");
-        }
-
+        var index_2 = value.search(str_2);
 
 
         while (index != -1) {
@@ -61,11 +53,20 @@ require([], function () {
                 }
 
             }
+
             value += result;
             value += second_part;
             match = value.match(str);
             index = value.search(str);
         }
+
+        while(index_2 != -1) {
+            var stepen = match_2[0].slice(1);
+            var base = value.slice(0,index_2);
+
+        }
+        alert(base);
+        alert(stepen);
 
             try {
                 value = eval(value);
@@ -102,15 +103,6 @@ require([], function () {
 
     }
 
-    function karet () {
-        if (result == true) {
-            result = false;
-            display.innerHTML = ""
-        }
-        display.innerHTML+=this.innerHTML;
-        clickres = true;
-
-    }
 
 
 });
