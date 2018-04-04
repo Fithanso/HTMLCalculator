@@ -37,7 +37,7 @@ require([], function () {
         var str_2 = /(\^(\d*))/g;
         var match_2 = value.match(str_2);
         var index_2 = value.search(str_2);
-
+        var marker = "cfc";
 
         while (index != -1) {
             var argument = parseFloat(match[0].slice(1));//match[0]-знак и всё после знака,slice(1)-убираем знак
@@ -60,11 +60,17 @@ require([], function () {
             index = value.search(str);
         }
 
-        while(index_2 != -1) {
-            var stepen = match_2[0].slice(1);
-            var base = value.slice(0,index_2);
-
         }
+        while(index_2 != -1) {
+             var stepen = match_2[0].slice(1);
+             var base = value.slice(0, index_2);
+             var total = Math.pow(base, stepen);
+             value += total;
+             match_2 = value.match(str_2);
+             index_2 = value.search(str_2);
+             //marker = true;
+         }
+
         alert(base);
         alert(stepen);
 
